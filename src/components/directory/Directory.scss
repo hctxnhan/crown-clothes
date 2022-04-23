@@ -1,7 +1,7 @@
 .category-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 32rem, 1fr;
+  grid-template-rows: minmax(min-content, 24rem) minmax(min-content, 32rem);
   gap: 0px 0px;
   grid-template-areas:
     'item1 item1 item2 item2 item3 item3'
