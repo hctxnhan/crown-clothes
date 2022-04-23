@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --border-thin: 1px solid #000;
+  --border-thick: 2px solid #000;
+}
+
 html {
   font-size: 62.5%;
 }
