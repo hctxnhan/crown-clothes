@@ -8,6 +8,7 @@ export default function FormInput({ label, value, ...others }) {
         className={`form-input__field ${
           value ? 'form-input__field--not-empty' : ''
         }`}
+        value={value}
         {...others}
       />
       <label htmlFor='name' className='form-input__label'>

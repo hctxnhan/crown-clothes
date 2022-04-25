@@ -5,5 +5,9 @@ export const BUTTON_TYPES = {
 };
 
 export default function Button({ children, buttonType, ...others }) {
-  return <button className={`btn btn--${buttonType}`}>{children}</button>;
+  return (
+    <button {...others} className={`btn btn--${buttonType}`}>
+      {children}
+    </button>
+  );
 }
