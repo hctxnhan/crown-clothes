@@ -4,6 +4,7 @@ import Home from './routes/home/Home';
 import Navigation from './routes/navigation/Navigation';
 import SignIn from './routes/sign-in/SignIn';
 import Shop from './routes/shop/Shop';
+import Checkout from './routes/checkout/Checkout';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path='/' element={<Navigation />}>
           <Route index element={<Home />} />
           <Route path='shop' element={<Shop />} />
-          <Route path={'/signin'} element={<SignIn />} />
+          <Route path='/signin' element={<SignIn />} />
+          <Route path='/checkout' element={<Checkout />} />
         </Route>
       </Routes>
     </div>

@@ -4,7 +4,7 @@ import CartDropdown from '../cart-dropdown/CartDropdown';
 import { CartContext } from '../../contexts/CartContext';
 import { useContext } from 'react';
 function CartIcon() {
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
 
   const handleCartIconClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -14,7 +14,7 @@ function CartIcon() {
     <div className='cart-icon-container'>
       <div className='cart-icon' onClick={handleCartIconClick}>
         <ShoppingIcon className='cart-icon__icon' />
-        <span className='cart-icon__count'>0</span>
+        <span className='cart-icon__count'>{cartCount}</span>
       </div>
       {isCartOpen && <CartDropdown />}
     </div>
