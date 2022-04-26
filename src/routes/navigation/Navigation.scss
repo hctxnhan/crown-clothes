@@ -1,7 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   &__menu {
     display: flex;
     gap: 2rem;
@@ -18,9 +18,5 @@
     &--active {
       border: var(--border-thin);
     }
-  }
-}
-.heeader {
-  &__logo {
   }
 }

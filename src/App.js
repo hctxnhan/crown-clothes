@@ -3,9 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './routes/home/Home';
 import Navigation from './routes/navigation/Navigation';
 import SignIn from './routes/sign-in/SignIn';
-function Shop() {
-  return <div className='shop'>I'm the Shop</div>;
-}
+import Shop from './routes/shop/Shop';
 
 function App() {
   return (

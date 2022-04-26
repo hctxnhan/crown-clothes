@@ -13,6 +13,7 @@ export const UserProvider = ({ children }) => {
       console.log('user changed');
       setUser(user);
     });
+    return () => unsubcribe();
   }, []);
   return (
     <UserContext.Provider value={{ user, setUser }}>
