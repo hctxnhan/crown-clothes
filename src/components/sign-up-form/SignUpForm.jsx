@@ -33,7 +33,6 @@ function SignUpForm(props) {
         email,
         password
       );
-
       await createUserDocumentFromAuth(user, { displayName });
       resetInputs();
     } catch (error) {

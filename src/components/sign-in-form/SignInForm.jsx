@@ -8,6 +8,7 @@ import FormInput from '../form-input/FormInput';
 import Button from '../button/Button';
 import { BUTTON_TYPES } from '../button/Button';
 import './SignInForm.scss';
+
 function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,8 +22,7 @@ function SignInForm() {
     e.preventDefault();
     resetInputs();
     try {
-      const reponse = await signInAuthWithEmailAndPassword(email, password);
-      console.log('response', reponse);
+      await signInAuthWithEmailAndPassword(email, password);
     } catch (error) {
       switch (error.code) {
         case 'auth/user-not-found':
@@ -44,7 +44,7 @@ function SignInForm() {
   const signInWithGoogle = async (e) => {
     console.log('signing in with google');
     const { user } = await signInWithGooglePopup();
-    const usersDocRef = await createUserDocumentFromAuth(user);
+    await createUserDocumentFromAuth(user);
   };
 
   return (

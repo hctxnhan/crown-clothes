@@ -1,7 +1,12 @@
 import './Navigation.scss';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-function Navigation(props) {
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
+import { signOutAuth } from '../../utils/firebase/FirebaseUtils';
+function Navigation() {
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <div className='header'>
@@ -15,9 +20,15 @@ function Navigation(props) {
           <NavLink to='/shop' className='header__option'>
             Shop
           </NavLink>
-          <NavLink to='/signin' className='header__option'>
-            Sign In
-          </NavLink>
+          {user ? (
+            <span className='header__option' onClick={signOutAuth}>
+              Sign Out
+            </span>
+          ) : (
+            <NavLink to='/signin' className='header__option'>
+              Sign In
+            </NavLink>
+          )}
         </div>
       </div>
       <Outlet />
