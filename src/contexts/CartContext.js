@@ -55,7 +55,6 @@ export const CartProvider = ({ children }) => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
-    console.log('Rerun');
     const count = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     setCartCount(count);
 
