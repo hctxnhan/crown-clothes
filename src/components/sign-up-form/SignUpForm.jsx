@@ -7,6 +7,13 @@ import FormInput from '../form-input/FormInput';
 import Button from '../button/Button';
 import { BUTTON_TYPES } from '../button/Button';
 import './SignUpForm.scss';
+import {
+  InputFields,
+  FormContainer,
+  FormHeading,
+  FormSubHeading,
+} from '../form/Form.Style';
+
 function SignUpForm(props) {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
@@ -45,10 +52,10 @@ function SignUpForm(props) {
   };
 
   return (
-    <div className='sign-up-form'>
-      <h2 className='form-title'>I do not have an account</h2>
-      <p className='form-subtitle'>Sign up with your email and password</p>
-      <form className='form form--sign-up' onSubmit={handleSubmit}>
+    <FormContainer>
+      <FormHeading>I do not have an account</FormHeading>
+      <FormSubHeading>Sign up with your email and password</FormSubHeading>
+      <InputFields onSubmit={handleSubmit}>
         <FormInput
           onChange={(e) => setDisplayName(e.target.value)}
           type='text'
@@ -84,8 +91,8 @@ function SignUpForm(props) {
         <Button buttonType={BUTTON_TYPES.INVERTED} type='submit'>
           SIGN UP
         </Button>
-      </form>
-    </div>
+      </InputFields>
+    </FormContainer>
   );
 }
 

@@ -1,4 +1,4 @@
-import './Navigation.scss';
+import './Navigation.Style.jsx';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { useContext } from 'react';
@@ -6,34 +6,35 @@ import { UserContext } from '../../contexts/UserContext';
 import { signOutAuth } from '../../utils/firebase/FirebaseUtils';
 
 import CartIcon from '../../components/cart-icon/CartIcon';
+
+import {
+  MenuContainer,
+  NavLinkContainer,
+  NavigationContainer,
+} from './Navigation.Style';
+
 function Navigation() {
   const { user } = useContext(UserContext);
 
   return (
     <>
-      <div className='header'>
+      <NavigationContainer>
         <NavLink to={'/'} className='header__logo-container'>
-          <Logo className='heeader__logo' />
+          <Logo className='header__logo' />
         </NavLink>
-        <div className='header__menu'>
-          <NavLink to='/' className='header__option'>
-            Home
-          </NavLink>
-          <NavLink to='/shop' className='header__option'>
-            Shop
-          </NavLink>
+        <MenuContainer>
+          <NavLinkContainer to='/'>Home</NavLinkContainer>
+          <NavLinkContainer to='/shop'>Shop</NavLinkContainer>
           {user ? (
-            <span className='header__option' onClick={signOutAuth}>
+            <NavLinkContainer as='span' onClick={signOutAuth}>
               Sign Out
-            </span>
+            </NavLinkContainer>
           ) : (
-            <NavLink to='/signin' className='header__option'>
-              Sign In
-            </NavLink>
+            <NavLinkContainer to='/signin'>Sign In</NavLinkContainer>
           )}
           <CartIcon />
-        </div>
-      </div>
+        </MenuContainer>
+      </NavigationContainer>
       <Outlet />
     </>
   );

@@ -1,4 +1,6 @@
-.category-container {
+import styled from 'styled-components';
+
+export const CategoryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: minmax(min-content, 24rem) minmax(min-content, 32rem);
@@ -9,4 +11,4 @@
   justify-items: center;
   align-items: center;
   gap: 1.6rem;
-}
+`;

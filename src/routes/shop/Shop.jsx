@@ -1,4 +1,4 @@
-import './Shop.scss';
+import './Shop.Style';
 import { Routes, Route } from 'react-router-dom';
 import CategoriesPreview from '../../components/categories-preview/CategoriesPreview';
 import Category from '../category/Category';

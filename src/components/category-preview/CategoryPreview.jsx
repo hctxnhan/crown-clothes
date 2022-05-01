@@ -1,5 +1,9 @@
 import ProductCard from '../product-card/ProductCard';
-import './CategoryPreview.scss';
+import {
+  CategoryPreviewContainer,
+  List,
+  Title,
+} from './CategoryPreview.Style.jsx';
 import { useNavigate } from 'react-router-dom';
 export default function CategoryPreview({ title, items }) {
   const navigate = useNavigate();
@@ -7,20 +11,15 @@ export default function CategoryPreview({ title, items }) {
     navigate(`./${category.toLowerCase()}`);
   };
   return (
-    <div className='category-preview'>
-      <div
-        className='category-preview__title'
-        onClick={() => handleClick(title)}
-      >
-        {title}
-      </div>
-      <div className='category-preview__list'>
+    <CategoryPreviewContainer>
+      <Title onClick={() => handleClick(title)}>{title}</Title>
+      <List>
         {items
           .filter((item, index) => index < 4)
           .map((item) => {
             return <ProductCard key={item.id} item={item} />;
           })}
-      </div>
-    </div>
+      </List>
+    </CategoryPreviewContainer>
   );
 }

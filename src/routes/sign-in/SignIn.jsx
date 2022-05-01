@@ -1,12 +1,12 @@
-import './SignIn.scss';
+import { SignInPageContainer } from './SignIn.Style';
 import SignInForm from '../../components/sign-in-form/SignInForm';
 import SignUpForm from '../../components/sign-up-form/SignUpForm';
-function SignIn(props) {
+function SignIn() {
   return (
-    <div className='sign-in'>
+    <SignInPageContainer>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </SignInPageContainer>
   );
 }
 
