@@ -4,9 +4,9 @@ import CheckoutItem from '../../components/checkout-item/CheckoutItem';
 
 import {
   CheckoutContainer,
-  CheckoutHeader,
-  CheckoutHeaderBlock,
-  CheckoutTotal,
+  Header,
+  HeaderBlock,
+  Total,
 } from './Checkout.Style';
 
 function Checkout() {
@@ -14,17 +14,17 @@ function Checkout() {
 
   return (
     <CheckoutContainer>
-      <CheckoutHeader>
-        <CheckoutHeaderBlock>Product</CheckoutHeaderBlock>
-        <CheckoutHeaderBlock>Description</CheckoutHeaderBlock>
-        <CheckoutHeaderBlock>Quantity</CheckoutHeaderBlock>
-        <CheckoutHeaderBlock>Price</CheckoutHeaderBlock>
-        <CheckoutHeaderBlock>Remove</CheckoutHeaderBlock>
-      </CheckoutHeader>
+      <Header>
+        <HeaderBlock>Product</HeaderBlock>
+        <HeaderBlock>Description</HeaderBlock>
+        <HeaderBlock>Quantity</HeaderBlock>
+        <HeaderBlock>Price</HeaderBlock>
+        <HeaderBlock>Remove</HeaderBlock>
+      </Header>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} item={cartItem} />
       ))}
-      <CheckoutTotal>{`TOTAL: $${cartTotal}`}</CheckoutTotal>
+      <Total>{`TOTAL: $${cartTotal}`}</Total>
     </CheckoutContainer>
   );
 }
