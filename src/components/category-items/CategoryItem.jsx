@@ -6,10 +6,10 @@ import {
   Title,
 } from './CategoryItem.Style.jsx';
 import { useNavigate } from 'react-router-dom';
-function CategoryItem({ imageUrl, title }) {
+function CategoryItem({ imageUrl, title, route }) {
   const navigate = useNavigate();
   const handleClick = (category) => {
-    navigate(`/shop/${category.toLowerCase()}`);
+    navigate(route);
   };
   return (
     <CategoryItemContainer onClick={() => handleClick(title)}>

@@ -6,7 +6,7 @@ export const NavigationContainer = styled.div`
   margin-bottom: 3rem;
 `;
 
-export const MenuContainer = styled.div`
+export const Menu = styled.div`
   display: flex;
   gap: 2rem;
   align-items: center;
