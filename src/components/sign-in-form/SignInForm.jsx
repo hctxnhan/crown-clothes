@@ -1,9 +1,4 @@
 import { useState } from 'react';
-import {
-  signInWithGooglePopup,
-  createUserDocumentFromAuth,
-  signInAuthWithEmailAndPassword,
-} from '../../utils/firebase/FirebaseUtils';
 import FormInput from '../form-input/FormInput';
 import Button from '../button/Button';
 import { BUTTON_TYPES } from '../button/Button';
@@ -15,9 +10,17 @@ import {
 } from '../form/Form.Style';
 import { SignInOptionsContainer } from './SignInForm.Style.jsx';
 
+import { useDispatch } from 'react-redux';
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from '../../store/user/UserActions';
+
 function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const resetInputs = () => {
     setEmail('');
@@ -26,37 +29,21 @@ function SignInForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('email: ', email);
+    dispatch(emailSignInStart(email, password));
     resetInputs();
-    try {
-      await signInAuthWithEmailAndPassword(email, password);
-    } catch (error) {
-      switch (error.code) {
-        case 'auth/user-not-found':
-          alert('User not found');
-          break;
-        case 'auth/wrong-password':
-          alert('Wrong password');
-          break;
-        case 'auth/invalid-email':
-          alert('Invalid email');
-          break;
-        default:
-          alert(error.message);
-          break;
-      }
-    }
   };
 
   const signInWithGoogle = async (e) => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    e.preventDefault();
+    dispatch(googleSignInStart());
   };
 
   return (
     <FormContainer>
       <FormHeading>I already have an account</FormHeading>
       <FormSubHeading>Sign in with my email and password</FormSubHeading>
-      <InputFields onSubmit={handleSubmit}>
+      <InputFields>
         <FormInput
           onChange={(e) => setEmail(e.target.value)}
           type='text'
@@ -74,7 +61,7 @@ function SignInForm() {
           required
         />
         <SignInOptionsContainer>
-          <Button type='submit' buttonType={BUTTON_TYPES.INVERTED}>
+          <Button onClick={handleSubmit} buttonType={BUTTON_TYPES.INVERTED}>
             Sign In
           </Button>
           <Button

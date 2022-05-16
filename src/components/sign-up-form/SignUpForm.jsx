@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from '../../utils/firebase/FirebaseUtils';
 import FormInput from '../form-input/FormInput';
 import Button from '../button/Button';
 import { BUTTON_TYPES } from '../button/Button';
@@ -14,11 +10,16 @@ import {
   FormSubHeading,
 } from '../form/Form.Style';
 
+import { useDispatch } from 'react-redux';
+import { signUpStart } from '../../store/user/UserActions';
+
 function SignUpForm(props) {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const resetInputs = () => {
     setEmail('');
@@ -36,11 +37,7 @@ function SignUpForm(props) {
     }
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserDocumentFromAuth(user, { displayName });
+      dispatch(signUpStart(email, password, displayName));
       resetInputs();
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -55,7 +52,7 @@ function SignUpForm(props) {
     <FormContainer>
       <FormHeading>I do not have an account</FormHeading>
       <FormSubHeading>Sign up with your email and password</FormSubHeading>
-      <InputFields onSubmit={handleSubmit}>
+      <InputFields>
         <FormInput
           onChange={(e) => setDisplayName(e.target.value)}
           type='text'
@@ -88,7 +85,7 @@ function SignUpForm(props) {
           label='Confirm Password'
           required
         />
-        <Button buttonType={BUTTON_TYPES.INVERTED} type='submit'>
+        <Button buttonType={BUTTON_TYPES.INVERTED} onClick={handleSubmit}>
           SIGN UP
         </Button>
       </InputFields>

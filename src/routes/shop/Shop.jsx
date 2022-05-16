@@ -5,26 +5,21 @@ import Category from '../category/Category';
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCategoriesAndDocuments } from '../../utils/firebase/FirebaseUtils';
-import { setCategories } from '../../store/categories/CategoriesActions';
+import { fetchCategoriesStart } from '../../store/categories/CategoriesActions';
 
 export default function Shop() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    const getCategoriesMap = async () => {
-      const categoriesArray = await getCategoriesAndDocuments();
-      dispatch(setCategories(categoriesArray));
-    };
-    getCategoriesMap();
-  }, []);
+    useEffect(() => {
+        dispatch(fetchCategoriesStart());
+    }, []);
 
-  return (
-    <div className='shop'>
-      <Routes>
-        <Route index element={<CategoriesPreview />} />
-        <Route path=':category' element={<Category />} />
-      </Routes>
-    </div>
-  );
+    return (
+        <div className='shop'>
+            <Routes>
+                <Route index element={<CategoriesPreview />} />
+                <Route path=':category' element={<Category />} />
+            </Routes>
+        </div>
+    );
 }

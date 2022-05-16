@@ -1,11 +1,13 @@
 import './Navigation.Style.jsx';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { signOutAuth } from '../../utils/firebase/FirebaseUtils';
 
 import CartIcon from '../../components/cart-icon/CartIcon';
 import { selectCurrentUser } from '../../store/user/UserSelectors.js';
 import { useSelector } from 'react-redux';
+
+import { useDispatch } from 'react-redux';
+import { signOutStart } from '../../store/user/UserActions.js';
 
 import {
   Menu,
@@ -15,6 +17,12 @@ import {
 
 function Navigation() {
   const user = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    dispatch(signOutStart());
+  };
+
   return (
     <>
       <NavigationContainer>
@@ -25,7 +33,7 @@ function Navigation() {
           <NavLinkContainer to='/'>Home</NavLinkContainer>
           <NavLinkContainer to='/shop'>Shop</NavLinkContainer>
           {user ? (
-            <NavLinkContainer as='span' onClick={signOutAuth}>
+            <NavLinkContainer as='span' onClick={handleSignOut}>
               Sign Out
             </NavLinkContainer>
           ) : (
