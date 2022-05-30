@@ -8,13 +8,15 @@ import {
   FormHeading,
   FormSubHeading,
 } from '../form/Form.Style';
-import { SignInOptionsContainer } from './SignInForm.Style.jsx';
+import { SignInOptionsContainer } from './SignInForm.Style.js';
 
 import { useDispatch } from 'react-redux';
 import {
   googleSignInStart,
   emailSignInStart,
 } from '../../store/user/UserActions';
+
+import { MouseEvent } from 'react';
 
 function SignInForm() {
   const [email, setEmail] = useState('');
@@ -27,14 +29,14 @@ function SignInForm() {
     setPassword('');
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log('email: ', email);
     dispatch(emailSignInStart(email, password));
     resetInputs();
   };
 
-  const signInWithGoogle = async (e) => {
+  const signInWithGoogle = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(googleSignInStart());
   };

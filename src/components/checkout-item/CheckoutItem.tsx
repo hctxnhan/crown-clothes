@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { FC } from 'react';
+import { CartItem } from '../../store/cart/CartTypes';
 import {
   removeItemFromCart,
   clearItemFromCart,
@@ -17,7 +19,11 @@ import {
   Remove,
 } from './CheckoutItem.Style';
 
-function CheckoutItem({ item }) {
+export type CheckoutItemProps = {
+  item: CartItem;
+};
+
+const CheckoutItem: FC<CheckoutItemProps> = ({ item }) => {
   const { imageUrl, price, name, quantity } = item;
   const dispatch = useDispatch();
 
@@ -52,6 +58,6 @@ function CheckoutItem({ item }) {
       </Remove>
     </CheckoutItemContainer>
   );
-}
+};
 
 export default CheckoutItem;

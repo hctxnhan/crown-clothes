@@ -10,7 +10,11 @@ export const FormInputContainer = styled.div`
   position: relative;
 `;
 
-export const Label = styled.label`
+type LabelProps = {
+  shrink: boolean;
+};
+
+export const Label = styled.label<LabelProps>`
   position: absolute;
   font-size: var(--font-size-normal);
   color: var(--text-color);

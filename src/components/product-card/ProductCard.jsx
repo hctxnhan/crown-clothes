@@ -8,8 +8,8 @@ import {
 import Button from '../button/Button';
 import { BUTTON_TYPES } from '../button/Button';
 
-import { addItemToCart } from '../../store/cart/CartActions.js';
-import { selectCartItems } from '../../store/cart/CartSelectors.js';
+import { addItemToCart } from '../../store/cart/CartActions';
+import { selectCartItems } from '../../store/cart/CartSelectors';
 import { useSelector, useDispatch } from 'react-redux';
 
 function ProductCard({ item }) {

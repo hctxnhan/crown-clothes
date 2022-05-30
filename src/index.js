@@ -9,13 +9,17 @@ import { store, persistor } from './store/Store';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
+import { Elements } from '@stripe/react-stripe-js';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
-          <App />
+          <Elements>
+            <App />
+          </Elements>
         </Router>
       </PersistGate>
     </Provider>

@@ -3,11 +3,11 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import CartIcon from '../../components/cart-icon/CartIcon';
-import { selectCurrentUser } from '../../store/user/UserSelectors.js';
+import { selectCurrentUser } from '../../store/user/UserSelectors';
 import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
-import { signOutStart } from '../../store/user/UserActions.js';
+import { signOutStart } from '../../store/user/UserActions';
 
 import {
   Menu,
